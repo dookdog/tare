@@ -1,0 +1,38 @@
+<!-- Replace the mailto "Request early access" button with this block -->
+<div id="axiom-signup" style="max-width:420px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <input id="ax-email" type="email" placeholder="you@domain.com" autocomplete="email"
+      style="flex:1;min-width:200px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1023;color:#fff;font:inherit;font-size:15px">
+    <button id="ax-submit" type="button"
+      style="padding:12px 18px;border:0;border-radius:10px;cursor:pointer;background:#fff;color:#0b1023;font:inherit;font-weight:700;font-size:15px">
+      Request early access
+    </button>
+  </div>
+  <label style="display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:12.5px;color:#c9d2e0">
+    <input id="ax-consent" type="checkbox" style="margin-top:2px">
+    <span>Email me once when Axiom early access opens. No sharing, no spam.</span>
+  </label>
+  <div id="ax-msg" role="status" aria-live="polite" style="min-height:18px;margin-top:8px;font-size:13px"></div>
+</div>
+
+<script>
+(function () {
+  var WORKER_URL = "https://tare-early-access.YOURSUBDOMAIN.workers.dev"; // <-- your real Worker URL
+  var email = document.getElementById("ax-email");
+  var btn = document.getElementById("ax-submit");
+  var consent = document.getElementById("ax-consent");
+  var msg = document.getElementById("ax-msg");
+  function say(t, ok) { msg.textContent = t; msg.style.color = ok ? "#7fd6a3" : "#e7a6a6"; }
+  async function submit() {
+    var v = (email.value || "").trim();
+    if (!v) { say("Enter your email to continue.", false); email.focus(); return; }
+    if (!consent.checked) { say("Please tick the box so we can email you.", false); return; }
+    btn.disabled = true; say("Adding you…", true);
+    try {
+      var res = await fetch(WORKER_URL + "/api/signup", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: v, consent: true, source: "axiom.inc" })
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (res.ok) {
+        say(data.status === "already_registered" ? "You're already on the list — we've got you."
