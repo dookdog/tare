@@ -1,1 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentinel</title>
+<meta name="description" content="A five-step practice for standing watch: pause, recognize, refuse, turn, act. Grounded in James 4:7-8 and Matthew 4.">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --ink: #1f1d1a;
+    --muted: #6b655c;
+    --rule: #ddd6c8;
+    --card: #ffffff;
+    --accent: #7a4b2a;
+    --accent-soft: #f1e6da;
+    --quote: #4a4640;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16140f;
+      --ink: #ece6da;
+      --muted: #a39b8d;
+      --rule: #3a352c;
+      --card: #211e18;
+      --accent: #d9a775;
+      --accent-soft: #2e2519;
+      --quote: #cfc7b8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    line-height: 1.6;
+    padding: 0 20px 64px;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  header { padding: 64px 0 32px; border-bottom: 1px solid var(--rule); }
+  .eyebrow {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  h1 { font-size: 2.6rem; font-weight: 400; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .lede { font-size: 1.15rem; color: var(--muted); margin: 0; max-width: 56ch; }
+  section { padding: 40px 0 0; }
+  h2 {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 20px;
+  }
+  p { margin: 0 0 1em; }
+  blockquote {
+    margin: 0 0 1.2em;
+    padding: 0 0 0 18px;
+    border-left: 3px solid var(--accent);
+    color: var(--quote);
+    font-style: italic;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 6px;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+  ol.steps li {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 22px 24px 18px 72px;
+    margin: 0 0 14px;
+    position: relative;
+  }
+  ol.steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 22px;
+    top: 20px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ol.steps h3 { margin: 0 0 6px; font-size: 1.3rem; font-weight: 400; }
+  ol.steps .what { margin: 0 0 10px; }
+  ol.steps .ref {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  ol.steps .ref strong { color: var(--accent); font-weight: 600; }
+  .pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin: 0; padding: 0; list-style: none; }
+  .pairs li { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .pairs .no { color: var(--muted); text-decoration: line-through; }
+  .pairs .yes { font-weight: 600; }
+  @media (max-width: 520px) {
+    h1 { font-size: 2rem; }
+    .pairs { grid-template-columns: 1fr; }
+    ol.steps li { padding-left: 64px; }
+  }
+  .note {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 8px;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">Sentinel</p>
+    <h1>Stand watch. Then take the next right step.</h1>
+    <p class="lede">A sentinel is a watchman, not a warrior. The work is to notice, to refuse what is harmful, and to turn back toward the good. The victory is usually ordinary.</p>
+  </header>
 
+  <section>
+    <h2>The pattern</h2>
+    <blockquote>
+      Submit yourselves therefore to God. Resist the devil, and he will flee from you. Draw near to God, and he will draw near to you.
+      <cite>James 4:7–8</cite>
+    </blockquote>
+    <p>Submit comes before resist. Resistance without an orientation toward the good collapses into willpower alone, and willpower alone is just pride wearing armor. The order matters.</p>
+    <blockquote>
+      I will stand at my watch and station myself on the ramparts; I will look to see what he will say to me.
+      <cite>Habakkuk 2:1</cite>
+    </blockquote>
+    <p>A sentinel reports. It does not judge, and it does not fight the whole war by itself. Its job is to stay awake, compare what it sees against a standard it already trusts, and raise the alarm early enough that the right action is still easy.</p>
+  </section>
+
+  <section>
+    <h2>The practice</h2>
+    <ol class="steps">
+      <li>
+        <h3>Pause</h3>
+        <p class="what">Before anything else, stop. Do not answer the thought, the fear, or the impulse in the same breath it arrived. A moment of stillness is the whole difference between reacting and choosing.</p>
+        <p class="ref"><strong>Psalm 46:10</strong> · Be still, and know that I am God.</p>
+      </li>
+      <li>
+        <h3>Recognize</h3>
+        <p class="what">Name what is actually in front of you. Deception, pride, despair, cruelty, panic. Jesus in the wilderness did not fight the tempter. He identified each offer for what it was by checking it against what he already knew to be true.</p>
+        <p class="ref"><strong>Matthew 4:1–11</strong> · Each temptation is answered with "It is written."</p>
+      </li>
+      <li>
+        <h3>Refuse</h3>
+        <p class="what">Decline it. Plainly, without argument, and without pretending you were never drawn to it. The temptation was not the defeat. Feeling it is not failure. What you choose next is the thing that counts.</p>
+        <p class="ref"><strong>James 4:7</strong> · Resist the devil, and he will flee from you.</p>
+      </li>
+      <li>
+        <h3>Turn</h3>
+        <p class="what">Refusal leaves a vacuum. Fill it on purpose: prayer, Scripture, worship, repentance, a trusted person. Draw near. The turning is the goal. The refusal was only the hinge.</p>
+        <p class="ref"><strong>James 4:8</strong> · Draw near to God, and he will draw near to you.</p>
+      </li>
+      <li>
+        <h3>Act</h3>
+        <p class="what">Take the next right action. Not the whole road, just the next step. Make the call, tell the truth, apologize, go to sleep, show up. Faithfulness is mostly small and repeated.</p>
+        <p class="ref"><strong>Micah 6:8</strong> · Do justice, love mercy, walk humbly with your God.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What victory looks like</h2>
+    <p>It rarely looks like a battle. Most of the time it looks like one of these, chosen quietly, again.</p>
+    <ul class="pairs">
+      <li><span class="no">Deception</span> → <span class="yes">Truth</span></li>
+      <li><span class="no">Pride</span> → <span class="yes">Humility</span></li>
+      <li><span class="no">Hatred</span> → <span class="yes">Forgiveness</span></li>
+      <li><span class="no">Despair</span> → <span class="yes">Hope</span></li>
+      <li><span class="no">Destructive impulse</span> → <span class="yes">Self-control</span></li>
+      <li><span class="no">Cruelty</span> → <span class="yes">Love</span></li>
+      <li><span class="no">Panic</span> → <span class="yes">Prayer</span></li>
+      <li><span class="no">Isolation</span> → <span class="yes">Community</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Two cautions for the watchman</h2>
+    <p><strong>A sentinel needs a reference.</strong> A watchman with no standard to compare against will raise alarms on everything. Jesus checked each temptation against Scripture. Keep the standard close, or the watch becomes noise.</p>
+    <p><strong>A sentinel reports; it does not condemn.</strong> If the watch starts deciding on its own that every frightening thought, strange dream, or coincidence is proof of a personal attack, it has drifted into the fear it was meant to guard against.</p>
+    <div class="note">
+      <p style="margin:0">Frightening thoughts and unusual experiences do not have to mean a supernatural being is targeting you. If they become overwhelming, support from a trusted faith leader and support from a mental-health professional can sit side by side. Asking for both is not a lack of faith. It is the watchman calling for help, which is exactly the job.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Keep watch</h2>
+    <blockquote>
+      What I say to you, I say to everyone: Watch.
+      <cite>Mark 13:37</cite>
+    </blockquote>
+    <p>Pause. Recognize. Refuse. Turn. Act. Then do it again tomorrow.</p>
+  </section>
+
+  <footer>Scripture quotations are paraphrased from public-domain and widely used English renderings.</footer>
+</main>
+</body>
+</html>
