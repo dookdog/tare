@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Harbor</title>
+<meta name="description" content="Harbor helps families facing cancer find support, plain-language guides and practical help. Dedicated to the memory of Elyse Spurgeon.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
+<style>
+/* Layout: one calm scrolling page; full-width colour bands, content in a 1200px column */
+:root{
+  --bg:#F3F6F4; --surface:#FFFFFF; --fg:#182624; --muted:#4A5A57; --soft:#3E4F4C;
+  --line:#D5DFDB; --line-strong:#B9C9C4;
+  --accent:#1E5E58; --accent-ink:#FFFFFF; --accent-soft:#DCEBE7; --accent-text:#1E5E58; --on-accent-muted:#E4F0ED;
+  --warm:#F2B544; --warm-ink:#182624; --warm-soft:#FCEFD2; --warm-text:#6B4A0A;
+  --deep:#182624; --deep-2:#24403C; --deep-line:#33504B; --deep-fg:#DCE5E2; --deep-muted:#B7C6C2;
+  --shadow:0 1px 0 var(--line), 0 24px 48px -28px rgba(24,38,36,.35);
+  --display:'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --body:'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101917; --surface:#17231F; --fg:#E8EFEC; --muted:#A9BAB5; --soft:#C3D1CD;
+  --line:#2A3B37; --line-strong:#3D524D;
+  --accent:#5FB3A8; --accent-ink:#0D1A18; --accent-soft:#1F3632; --accent-text:#7CC7BC; --on-accent-muted:#163430;
+  --warm:#F2B544; --warm-ink:#182624; --warm-soft:#3A2F17; --warm-text:#F2C46A;
+  --deep:#0A1110; --deep-2:#1A2C29; --deep-line:#263B37; --deep-fg:#C9D6D2; --deep-muted:#9DB0AB;
+  --shadow:0 1px 0 var(--line); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101917; --surface:#17231F; --fg:#E8EFEC; --muted:#A9BAB5; --soft:#C3D1CD;
+  --line:#2A3B37; --line-strong:#3D524D;
+  --accent:#5FB3A8; --accent-ink:#0D1A18; --accent-soft:#1F3632; --accent-text:#7CC7BC; --on-accent-muted:#163430;
+  --warm:#F2B544; --warm-ink:#182624; --warm-soft:#3A2F17; --warm-text:#F2C46A;
+  --deep:#0A1110; --deep-2:#1A2C29; --deep-line:#263B37; --deep-fg:#C9D6D2; --deep-muted:#9DB0AB;
+  --shadow:0 1px 0 var(--line); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.6}
+a{color:var(--accent-text);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--warm);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em;line-height:1.08}
+p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.band{border-top:1px solid var(--line)}
+.band.white{background:var(--surface)}
+.section{padding-block:88px}
+.eyebrow{font-weight:700;color:var(--accent-text);letter-spacing:.08em;text-transform:uppercase;font-size:15px}
+.lede{font-size:20px;color:var(--soft);max-width:60ch}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;border-radius:999px;font:700 17px/1.2 var(--body);text-decoration:none;border:1.5px solid transparent;cursor:pointer}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:var(--surface);color:var(--fg);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--fg)}
+.icon{width:22px;height:22px;flex:none}
+
+/* top strip + header */
+.strip{background:var(--deep);color:#FFFFFF;font-size:15px}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;padding-block:10px}
+.strip a{color:var(--warm);font-weight:700}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--surface)}
+header.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg)}
+.logo span{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.02em}
+nav.main{display:flex;flex-wrap:wrap;gap:0 22px;font-size:17px}
+nav.main a{color:var(--fg);text-decoration:none;padding:10px 0;display:inline-block}
+nav.main a:hover{color:var(--accent-text);text-decoration:underline}
+
+/* hero */
+.hero{display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding-block:80px 72px}
+.hero > *{flex:1 1 440px;min-width:0}
+.hero h1{font-size:clamp(44px, 7vw, 72px);line-height:1.02;letter-spacing:-.03em;margin-top:14px}
+.hero .lede{margin-top:24px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.chooser{background:var(--surface);border-radius:28px;padding:32px;box-shadow:var(--shadow)}
+.chooser h2{font-size:28px}
+.chooser p{font-size:16px;margin:6px 0 20px}
+.chooser ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.chooser a{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;color:var(--fg);background:var(--bg);border-radius:16px;padding:14px 20px;min-height:48px}
+.chooser a:hover{background:var(--accent-soft)}
+.chooser strong{display:block}
+.chooser small{display:block;font-size:15px;color:var(--muted)}
+
+/* stages */
+.head-row{display:flex;flex-wrap:wrap;gap:16px 48px;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.head-row h2,.h2{font-size:clamp(34px, 5vw, 48px)}
+.head-row p{max-width:42ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit, minmax(min(100%, 210px), 1fr))}
+.stage{background:var(--bg);border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+.stage .n{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent-text);display:grid;place-items:center;font:700 20px var(--display)}
+.stage h3{font-size:23px}
+.stage ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:16px}
+
+/* tools */
+.tools{display:grid;gap:20px;grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr));margin-top:40px}
+.tool{text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.tool:hover{border-color:var(--accent)}
+.tag{align-self:flex-start;background:var(--warm-soft);color:var(--warm-text);border-radius:999px;padding:3px 12px;font-size:14px;font-weight:700}
+.tool .t{font:700 24px/1.2 var(--display);letter-spacing:-.01em}
+.tool .b{color:var(--muted);font-size:16px}
+.tool .c{color:var(--accent-text);font-weight:700;font-size:16px;margin-top:auto}
+
+/* finder */
+.finder{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:40px}
+.finder-main{flex:999 1 600px;min-width:0}
+.finder-side{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:22px}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:700;margin-bottom:12px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:44px;padding:9px 18px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg);font:400 16px var(--body);cursor:pointer}
+.chip:hover{border-color:var(--fg)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.count{margin:28px 0 16px;color:var(--muted)}
+.results{display:flex;flex-direction:column;gap:14px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between}
+.group > div{flex:1 1 340px;min-width:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.pill{border-radius:999px;padding:3px 12px;font-size:14px;font-weight:700}
+.pill.f{background:var(--accent-soft);color:var(--accent-text)}
+.pill.w{background:var(--warm-soft);color:var(--warm-text)}
+.group h3{font-size:24px}
+.group .b{color:var(--muted);font-size:16px;margin-top:6px}
+.group .meta{font-size:15px;color:var(--soft);margin-top:10px}
+.empty{background:var(--surface);border:1.5px dashed var(--line-strong);border-radius:20px;padding:32px;text-align:center}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+.panel h3{font-size:22px;margin-bottom:12px}
+.panel ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;color:var(--soft)}
+.note{background:var(--warm-soft);color:var(--fg);border-radius:24px;padding:24px 28px;font-size:16px}
+
+/* talk */
+.talk{background:var(--accent);color:var(--accent-ink);border-radius:32px;padding:clamp(28px, 5vw, 56px);display:flex;flex-wrap:wrap;gap:40px;align-items:center}
+.talk > div{flex:1 1 380px;min-width:0}
+.talk h2{font-size:clamp(32px, 4.5vw, 44px)}
+.talk p{margin-top:16px;font-size:19px;opacity:.92}
+.talk-list{display:flex;flex-direction:column;gap:12px}
+.talk-item{background:var(--surface);color:var(--fg);border-radius:18px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none}
+.talk-item small{display:block;font-size:15px;color:var(--muted)}
+.talk-item strong{display:block}
+.talk-item.warm{background:var(--warm);color:var(--warm-ink)}
+.talk-item.warm small{color:var(--warm-ink)}
+
+/* forms */
+form.stack{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+label{font-weight:700;font-size:16px;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;font:400 17px var(--body);color:var(--fg);background:var(--bg);border:1.5px solid var(--line-strong);border-radius:12px;padding:12px 14px;min-height:48px}
+textarea{min-height:110px;resize:vertical}
+.ok{background:var(--accent-soft);color:var(--fg);border-radius:14px;padding:14px 18px;font-size:16px}
+
+/* elyse */
+.memory{max-width:820px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.memory h2{font-size:clamp(40px, 6vw, 60px)}
+.memory .lede{margin-top:4px}
+
+/* footer */
+footer{background:var(--deep);color:var(--deep-fg);font-size:16px}
+footer .wrap{padding-block:64px 40px}
+.crisis{background:var(--deep-2);color:#FFFFFF;border-radius:18px;padding:20px 24px;margin-bottom:48px}
+.fgrid{display:grid;gap:32px;grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr))}
+.fgrid strong{color:#FFFFFF;display:block;margin-bottom:6px}
+.fgrid a{color:var(--deep-fg);display:block;padding:3px 0}
+.fine{margin-top:48px;padding-top:24px;border-top:1px solid var(--deep-line);font-size:14px;color:var(--deep-muted)}
+.fine a{color:var(--deep-muted)}
+</style>
+</head>
+<body>
+
+<div class="strip"><div class="wrap">
+  <span>Just heard the word “cancer”? <a href="#guides">Start here, one small step at a time</a></span>
+  <span>Free and private. No sign-up needed to read.</span>
+</div></div>
+
+<header class="site"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Harbor home">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="var(--accent-soft)"/><path d="M8 21c3 3 6.5 4.5 10 4.5S25 24 28 21" stroke="var(--accent-text)" stroke-width="2.4" stroke-linecap="round"/><path d="M18 9v13M13 13h10" stroke="var(--accent-text)" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span>Harbor</span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="#find">Find support</a>
+    <a href="#guides">Guides</a>
+    <a href="#help">Practical help</a>
+    <a href="#elyse">Elyse</a>
+  </nav>
+  <a class="btn btn-primary" href="#talk">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Talk to someone
+  </a>
+</div></header>
+
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <p class="eyebrow">For the whole family</p>
+    <h1>You don’t have to carry this alone.</h1>
+    <p class="lede">Harbor helps patients, partners, parents, kids and caregivers find steady ground through cancer, with plain-language guides, practical help, and people who have been where you are.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#find">Find support for my family</a>
+      <a class="btn btn-ghost" href="#guides">Read the guides</a>
+    </div>
+  </div>
+  <div class="chooser">
+    <h2>Who are you here for?</h2>
+    <p class="muted">We’ll show you the groups that fit your place in this.</p>
+    <ul id="chooser"></ul>
+  </div>
+</section>
+
+<section id="guides" class="band white"><div class="wrap section">
+  <div class="head-row">
+    <h2>Where is your family right now?</h2>
+    <p class="muted">Every stage brings different questions. Pick the one that fits today. You can always come back.</p>
+  </div>
+  <div class="grid">
+    <div class="stage"><div class="n">1</div><h3>Just diagnosed</h3><ul><li><a href="#">The first two weeks</a></li><li><a href="#">Questions to ask the doctor</a></li><li><a href="#">Telling family and friends</a></li></ul></div>
+    <div class="stage"><div class="n">2</div><h3>In treatment</h3><ul><li><a href="#">Getting through chemo days</a></li><li><a href="#">Keeping home life going</a></li><li><a href="#">When kids act out</a></li></ul></div>
+    <div class="stage"><div class="n">3</div><h3>After treatment</h3><ul><li><a href="#">Fear of it coming back</a></li><li><a href="#">Going back to work</a></li><li><a href="#">Finding a new normal</a></li></ul></div>
+    <div class="stage"><div class="n">4</div><h3>Advanced cancer</h3><ul><li><a href="#">Palliative care explained</a></li><li><a href="#">Making plans together</a></li><li><a href="#">Saying what matters</a></li></ul></div>
+    <div class="stage"><div class="n">5</div><h3>Grief and loss</h3><ul><li><a href="#">The first days</a></li><li><a href="#">Helping a grieving child</a></li><li><a href="#find" data-role="grief">Grief circles</a></li></ul></div>
+  </div>
+</div></section>
+
+<section id="find" class="band"><div class="wrap section">
+  <p class="eyebrow">Find support</p>
+  <h2 class="h2" style="margin-top:10px">Find your people</h2>
+  <p class="lede" style="margin-top:16px">Small, gentle groups led by trained facilitators, and one-on-one time with someone who understands. All free. Join, listen, or just sit in.</p>
+
+  <div class="finder">
+    <div class="finder-main">
+      <div class="filters">
+        <fieldset><legend>I am…</legend><div class="chips" id="roleChips"></div></fieldset>
+        <fieldset><legend>How would you like to meet?</legend><div class="chips" id="formatChips"></div></fieldset>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="results" id="results"></div>
+    </div>
+    <aside class="finder-side">
+      <div class="panel">
+        <h3>What a first group is like</h3>
+        <ul>
+          <li>You can keep your camera off, or just listen.</li>
+          <li>Groups are small and led by a trained facilitator.</li>
+          <li>What’s shared in the circle stays in the circle.</li>
+          <li>Leave whenever you need to. No explanation needed.</li>
+        </ul>
+      </div>
+      <div class="panel" id="seat">
+        <h3>Save a seat</h3>
+        <p class="muted" style="font-size:16px">Pick a group and leave a way to reach you. A facilitator will get in touch with the details.</p>
+        <form class="stack" id="seatForm" novalidate>
+          <div><label for="seatGroup">Group</label><select id="seatGroup"></select></div>
+          <div><label for="seatName">First name</label><input id="seatName" autocomplete="given-name" required></div>
+          <div><label for="seatContact">Email or phone</label><input id="seatContact" autocomplete="email" required></div>
+          <button class="btn btn-primary" type="submit">Save my seat</button>
+          <p class="ok" id="seatOk" role="status" hidden></p>
+        </form>
+      </div>
+      <div class="note"><strong>Can’t find a group near you?</strong> Tell us your town in the form above and we’ll let you know when one starts.</div>
+    </aside>
+  </div>
+</div></section>
+
+<section id="help" class="band white"><div class="wrap section">
+  <h2 class="h2">Help with the hard, ordinary things</h2>
+  <p class="lede muted" style="margin-top:12px">Cancer doesn’t pause the school run, the bills or the laundry. These tools take some of the weight off.</p>
+  <div class="tools">
+    <a class="tool" href="#"><span class="tag">Care calendar</span><span class="t">Share the load</span><span class="b">One link where friends can sign up for meals, rides to appointments and school pickups.</span><span class="c">Set up a calendar →</span></a>
+    <a class="tool" href="#"><span class="tag">Updates</span><span class="t">Tell everyone once</span><span class="b">Post one update for family and friends, so you’re not answering the same texts all day.</span><span class="c">Start an update page →</span></a>
+    <a class="tool" href="#"><span class="tag">Money</span><span class="t">Bills, insurance and work</span><span class="b">Plain-language help with insurance, time off, and financial assistance programs.</span><span class="c">Get money help →</span></a>
+    <a class="tool" href="#"><span class="tag">Kids</span><span class="t">Talking with children</span><span class="b">Age-by-age words for explaining cancer, and activities to do together.</span><span class="c">See the guide →</span></a>
+  </div>
+</div></section>
+
+<section id="talk" class="band"><div class="wrap section">
+  <div class="talk">
+    <div>
+      <h2>Sometimes you just need a person.</h2>
+      <p>Talk with a trained support specialist or a volunteer who has lived through it, by phone, chat or video. No appointment, no judgement.</p>
+    </div>
+    <div class="talk-list">
+      <div class="talk-item"><span><strong>Call the support line</strong><small>[HELPLINE NUMBER] · [HOURS]</small></span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div>
+      <div class="talk-item"><span><strong>Email us</strong><small>[SUPPORT EMAIL ADDRESS]</small></span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+      <a class="talk-item warm" href="#seat" data-pick="mentor"><span><strong>Get matched with a peer mentor</strong><small>Someone who’s walked the same road</small></span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div></section>
+
+<section id="elyse" class="band white"><div class="wrap section">
+  <div class="memory">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.3 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>
+    <p class="eyebrow">In loving memory</p>
+    <h2>Elyse Spurgeon</h2>
+    <p class="muted">[YEAR OF BIRTH] – [YEAR OF PASSING]</p>
+    <p class="lede">Harbor is dedicated to Elyse, and to every family who has sat in a waiting room hoping for good news. [A FEW WORDS ABOUT ELYSE: who she was, what she loved, and why this place exists in her name.]</p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="crisis"><strong>In crisis or thinking about harming yourself?</strong> In the US, call or text <strong>988</strong> any time. If someone is in immediate danger, call <strong>911</strong>.</div>
+  <div class="fgrid">
+    <div><p style="font:700 24px var(--display);color:#FFFFFF">Harbor</p><p style="margin-top:8px">A steady place for families facing cancer. Made in memory of Elyse Spurgeon.</p></div>
+    <div><strong>Support</strong><a href="#find">Find a support circle</a><a href="#talk">Talk to someone</a><a href="#find" data-role="grief">Grief support</a></div>
+    <div><strong>Guides</strong><a href="#guides">By stage</a><a href="#help">Practical help</a><a href="#help">Talking with children</a></div>
+    <div><strong>About</strong><a href="#elyse">Elyse Spurgeon</a><a href="#">Volunteer</a><a href="#">Donate</a></div>
+  </div>
+  <p class="fine">Harbor offers emotional and practical support, not medical advice. Always talk with your care team about diagnosis and treatment.</p>
+</div></footer>
+
+<script>
+(function(){
+  var ROLES = [
+    ['all','Anyone'], ['patient','Living with cancer'], ['partner','A partner or spouse'],
+    ['parent','A parent of a child with cancer'], ['adultchild','An adult child'],
+    ['kid','A kid or teen'], ['grief','Grieving']
+  ];
+  var FORMATS = [['any','Any way'], ['online','Online'], ['inperson','In person'], ['one','One-on-one']];
+  var CHOOSER = [
+    ['patient','I have cancer','Support for you, and for the people around you'],
+    ['partner','My partner or spouse has cancer','Caring for them, and for yourself'],
+    ['parent','My child has cancer','Parents, siblings and the whole household'],
+    ['adultchild','My parent has cancer','For adult children, and for kids and teens'],
+    ['grief','Someone I love has died','Gentle grief support, at your own pace']
+  ];
+  var GROUPS = [
+    {id:'newly', roles:['patient'], f:'online', format:'Online', who:'Living with cancer', title:'Newly diagnosed circle', body:'For the first months after diagnosis, when everything is new and nothing makes sense yet.', when:'[DAY] · [TIME]', where:'Video call'},
+    {id:'partners', roles:['partner'], f:'online', format:'Online', who:'Partners and spouses', title:'Partners in the evening', body:'After the kids are in bed. Being strong for someone else, and being honest about how tired you are.', when:'[DAY] · [TIME]', where:'Video call'},
+    {id:'parents', roles:['parent'], f:'inperson', format:'In person', who:'Parents', title:'Parents of kids in treatment', body:'Coffee, a quiet room, and other parents who know the hospital car park by heart.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
+    {id:'siblings', roles:['kid'], f:'inperson', format:'In person', who:'Ages 6–12', title:'Sibling Saturdays', body:'Art, games and gentle talk for brothers and sisters of a child with cancer.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
+    {id:'teens', roles:['kid'], f:'online', format:'Online', who:'Ages 13–18', title:'Teens with a parent who has cancer', body:'A space just for teens, with chat-only options for anyone who’d rather type.', when:'[DAY] · [TIME]', where:'Video call'},
+    {id:'adultkids', roles:['adultchild'], f:'online', format:'Online', who:'Adult children', title:'Caring for a parent', body:'Juggling work, your own family and a parent’s treatment, often from far away.', when:'[DAY] · [TIME]', where:'Video call'},
+    {id:'grief', roles:['grief'], f:'inperson', format:'In person', who:'Grieving', title:'Grief circle: the first year', body:'For anyone who has lost someone to cancer. Come as you are, for as long as you need.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
+    {id:'mentor', roles:['patient','partner','parent','adultchild','grief'], f:'one', format:'One-on-one', who:'Anyone', title:'Peer mentor match', body:'We pair you with a trained volunteer who has lived something close to your story.', when:'At a time you choose', where:'Phone or video'},
+    {id:'checkin', roles:['partner','parent','adultchild'], f:'one', format:'One-on-one', who:'Caregivers', title:'Caregiver check-in', body:'A short call with a support specialist, just about you: sleep, stress, and what would help.', when:'At a time you choose', where:'Phone'}
+  ];
+  var state = {role:'all', format:'any'};
+  try { var saved = JSON.parse(localStorage.getItem('harbor-filters') || 'null'); if (saved && saved.role) state = saved; } catch(e) {}
+
+  function el(tag, cls, text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
+  var arrow = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  var chooser = document.getElementById('chooser');
+  CHOOSER.forEach(function(c){
+    var li = el('li'); var a = el('a'); a.href = '#find'; a.dataset.role = c[0];
+    var s = el('span'); s.appendChild(el('strong', null, c[1])); s.appendChild(el('small', null, c[2]));
+    a.appendChild(s); a.insertAdjacentHTML('beforeend', arrow); li.appendChild(a); chooser.appendChild(li);
+  });
+
+  function chips(id, list, key){
+    var box = document.getElementById(id); box.textContent = '';
+    list.forEach(function(o){
+      var b = el('button', 'chip', o[1]); b.type = 'button';
+      b.setAttribute('aria-pressed', String(state[key] === o[0]));
+      b.addEventListener('click', function(){ state[key] = o[0]; render(); });
+      box.appendChild(b);
+    });
+  }
+
+  var select = document.getElementById('seatGroup');
+  GROUPS.forEach(function(g){ var o = el('option', null, g.title); o.value = g.id; select.appendChild(o); });
+  var other = el('option', null, 'No group near me yet: let me know'); other.value = 'notify'; select.appendChild(other);
+
+  function render(){
+    try { localStorage.setItem('harbor-filters', JSON.stringify(state)); } catch(e) {}
+    chips('roleChips', ROLES, 'role'); chips('formatChips', FORMATS, 'format');
+    var list = GROUPS.filter(function(g){
+      return (state.role === 'all' || g.roles.indexOf(state.role) !== -1) && (state.format === 'any' || g.f === state.format);
+    });
+    var res = document.getElementById('results'); res.textContent = '';
+    document.getElementById('count').textContent = list.length === 0 ? '' : (list.length === 1 ? '1 way to connect' : list.length + ' ways to connect');
+    list.forEach(function(g){
+      var art = el('article', 'group'); var d = el('div');
+      var p = el('div', 'pills'); p.appendChild(el('span', 'pill f', g.format)); p.appendChild(el('span', 'pill w', g.who));
+      d.appendChild(p); d.appendChild(el('h3', null, g.title)); d.appendChild(el('p', 'b', g.body));
+      var m = el('p', 'meta'); m.textContent = 'When: ' + g.when + ' · Where: ' + g.where; d.appendChild(m);
+      var btn = el('a', 'btn btn-primary', g.f === 'one' ? 'Get matched' : 'Save my seat'); btn.href = '#seat';
+      btn.addEventListener('click', function(){ select.value = g.id; });
+      art.appendChild(d); art.appendChild(btn); res.appendChild(art);
+    });
+    if (!list.length){
+      var e = el('div', 'empty'); e.appendChild(el('p', null, 'Nothing matches just yet.')).style.fontWeight = '700';
+      var q = el('p', 'muted', 'A peer mentor can meet you one-on-one, whatever your situation.'); q.style.margin = '6px 0 16px'; e.appendChild(q);
+      var r = el('button', 'btn btn-ghost', 'Show all groups'); r.type = 'button';
+      r.addEventListener('click', function(){ state = {role:'all', format:'any'}; render(); });
+      e.appendChild(r); res.appendChild(e);
+    }
+  }
+
+  document.addEventListener('click', function(ev){
+    var a = ev.target.closest('[data-role]');
+    if (a){ state = {role:a.dataset.role, format:'any'}; render(); }
+    var p = ev.target.closest('[data-pick]');
+    if (p){ select.value = p.dataset.pick; }
+  });
+
+  document.getElementById('seatForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var name = document.getElementById('seatName'), contact = document.getElementById('seatContact'), ok = document.getElementById('seatOk');
+    if (!name.value.trim() || !contact.value.trim()){
+      ok.hidden = false; ok.textContent = 'Please add your first name and an email or phone number so we can reach you.'; (name.value.trim() ? contact : name).focus(); return;
+    }
+    var g = select.options[select.selectedIndex].text;
+    ok.hidden = false;
+    ok.textContent = 'Thank you, ' + name.value.trim() + '. Your request for “' + g + '” is noted. [Sign-ups are not sent anywhere yet: connect a form service before launch.]';
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
