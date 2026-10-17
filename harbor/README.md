@@ -1,4 +1,4 @@
-# Cancer
+# Cancer Family Support
 
 A website for families facing cancer, dedicated to the memory of Elyse Spurgeon.
 
