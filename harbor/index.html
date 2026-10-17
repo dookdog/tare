@@ -251,7 +251,7 @@ footer .wrap{padding-block:64px 40px}
       </div>
       <div class="panel" id="seat">
         <h3>Save a seat</h3>
-        <p class="muted" style="font-size:16px">Pick a group and leave a way to reach you. A facilitator will get in touch with the details.</p>
+        <p class="muted" style="font-size:16px">Pick a group you’d like to join. Online sign-up is opening soon.</p>
         <form class="stack" id="seatForm" novalidate>
           <div><label for="seatGroup">Group</label><select id="seatGroup"></select></div>
           <div><label for="seatName">First name</label><input id="seatName" autocomplete="given-name" required></div>
@@ -260,7 +260,7 @@ footer .wrap{padding-block:64px 40px}
           <p class="ok" id="seatOk" role="status" hidden></p>
         </form>
       </div>
-      <div class="note"><strong>Can’t find a group near you?</strong> Tell us your town in the form above and we’ll let you know when one starts.</div>
+      <div class="note"><strong>Need a group today?</strong> CancerCare and the Cancer Support Community (1-888-793-9355) both run free groups, online and by phone.</div>
     </aside>
   </div>
 </div></section>
@@ -280,12 +280,12 @@ footer .wrap{padding-block:64px 40px}
   <div class="talk">
     <div>
       <h2>Sometimes you just need a person.</h2>
-      <p>Talk with a trained support specialist or a volunteer who has lived through it, by phone, chat or video. No appointment, no judgement.</p>
+      <p>These free national helplines connect you with trained specialists and social workers. No appointment, no judgement.</p>
     </div>
     <div class="talk-list">
-      <div class="talk-item"><span><strong>Call the support line</strong><small>[HELPLINE NUMBER] · [HOURS]</small></span>
+      <div class="talk-item"><span><strong>American Cancer Society helpline</strong><small>1-800-227-2345 · 24 hours a day, 7 days a week</small></span>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div>
-      <div class="talk-item"><span><strong>Email us</strong><small>[SUPPORT EMAIL ADDRESS]</small></span>
+      <div class="talk-item"><span><strong>CancerCare: free counseling and support groups</strong><small>1-800-813-4673 (1-800-813-HOPE) · cancercare.org</small></span>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
       <a class="talk-item warm" href="#seat" data-pick="mentor"><span><strong>Get matched with a peer mentor</strong><small>Someone who’s walked the same road</small></span>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -298,8 +298,7 @@ footer .wrap{padding-block:64px 40px}
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.3 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>
     <p class="eyebrow">In loving memory</p>
     <h2>Elyse Spurgeon</h2>
-    <p class="muted">[YEAR OF BIRTH] – [YEAR OF PASSING]</p>
-    <p class="lede">Cancer Family Support is dedicated to Elyse, and to every family who has sat in a waiting room hoping for good news. [A FEW WORDS ABOUT ELYSE: who she was, what she loved, and why this place exists in her name.]</p>
+        <p class="lede">Cancer Family Support is dedicated to Elyse, and to every family who has sat in a waiting room hoping for good news.</p>
   </div>
 </div></section>
 </main>
@@ -331,13 +330,13 @@ footer .wrap{padding-block:64px 40px}
     ['grief','Someone I love has died','Gentle grief support, at your own pace']
   ];
   var GROUPS = [
-    {id:'newly', roles:['patient'], f:'online', format:'Online', who:'Living with cancer', title:'Newly diagnosed circle', body:'For the first months after diagnosis, when everything is new and nothing makes sense yet.', when:'[DAY] · [TIME]', where:'Video call'},
-    {id:'partners', roles:['partner'], f:'online', format:'Online', who:'Partners and spouses', title:'Partners in the evening', body:'After the kids are in bed. Being strong for someone else, and being honest about how tired you are.', when:'[DAY] · [TIME]', where:'Video call'},
-    {id:'parents', roles:['parent'], f:'inperson', format:'In person', who:'Parents', title:'Parents of kids in treatment', body:'Coffee, a quiet room, and other parents who know the hospital car park by heart.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
-    {id:'siblings', roles:['kid'], f:'inperson', format:'In person', who:'Ages 6–12', title:'Sibling Saturdays', body:'Art, games and gentle talk for brothers and sisters of a child with cancer.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
-    {id:'teens', roles:['kid'], f:'online', format:'Online', who:'Ages 13–18', title:'Teens with a parent who has cancer', body:'A space just for teens, with chat-only options for anyone who’d rather type.', when:'[DAY] · [TIME]', where:'Video call'},
-    {id:'adultkids', roles:['adultchild'], f:'online', format:'Online', who:'Adult children', title:'Caring for a parent', body:'Juggling work, your own family and a parent’s treatment, often from far away.', when:'[DAY] · [TIME]', where:'Video call'},
-    {id:'grief', roles:['grief'], f:'inperson', format:'In person', who:'Grieving', title:'Grief circle: the first year', body:'For anyone who has lost someone to cancer. Come as you are, for as long as you need.', when:'[DAY] · [TIME]', where:'[VENUE, CITY]'},
+    {id:'newly', roles:['patient'], f:'online', format:'Online', who:'Living with cancer', title:'Newly diagnosed circle', body:'For the first months after diagnosis, when everything is new and nothing makes sense yet.', when:'Weekly, time shared when you sign up', where:'Video call'},
+    {id:'partners', roles:['partner'], f:'online', format:'Online', who:'Partners and spouses', title:'Partners in the evening', body:'After the kids are in bed. Being strong for someone else, and being honest about how tired you are.', when:'Weekly, time shared when you sign up', where:'Video call'},
+    {id:'parents', roles:['parent'], f:'inperson', format:'In person', who:'Parents', title:'Parents of kids in treatment', body:'Coffee, a quiet room, and other parents who know the hospital car park by heart.', when:'Weekly, time shared when you sign up', where:'In person, place shared when you sign up'},
+    {id:'siblings', roles:['kid'], f:'inperson', format:'In person', who:'Ages 6–12', title:'Sibling Saturdays', body:'Art, games and gentle talk for brothers and sisters of a child with cancer.', when:'Weekly, time shared when you sign up', where:'In person, place shared when you sign up'},
+    {id:'teens', roles:['kid'], f:'online', format:'Online', who:'Ages 13–18', title:'Teens with a parent who has cancer', body:'A space just for teens, with chat-only options for anyone who’d rather type.', when:'Weekly, time shared when you sign up', where:'Video call'},
+    {id:'adultkids', roles:['adultchild'], f:'online', format:'Online', who:'Adult children', title:'Caring for a parent', body:'Juggling work, your own family and a parent’s treatment, often from far away.', when:'Weekly, time shared when you sign up', where:'Video call'},
+    {id:'grief', roles:['grief'], f:'inperson', format:'In person', who:'Grieving', title:'Grief circle: the first year', body:'For anyone who has lost someone to cancer. Come as you are, for as long as you need.', when:'Weekly, time shared when you sign up', where:'In person, place shared when you sign up'},
     {id:'mentor', roles:['patient','partner','parent','adultchild','grief'], f:'one', format:'One-on-one', who:'Anyone', title:'Peer mentor match', body:'We pair you with a trained volunteer who has lived something close to your story.', when:'At a time you choose', where:'Phone or video'},
     {id:'checkin', roles:['partner','parent','adultchild'], f:'one', format:'One-on-one', who:'Caregivers', title:'Caregiver check-in', body:'A short call with a support specialist, just about you: sleep, stress, and what would help.', when:'At a time you choose', where:'Phone'}
   ];
@@ -409,7 +408,7 @@ footer .wrap{padding-block:64px 40px}
     }
     var g = select.options[select.selectedIndex].text;
     ok.hidden = false;
-    ok.textContent = 'Thank you, ' + name.value.trim() + '. Your request for “' + g + '” is noted. [Sign-ups are not sent anywhere yet: connect a form service before launch.]';
+    ok.textContent = 'Thank you, ' + name.value.trim() + '. Online sign-up for “' + g + '” opens soon. In the meantime, CancerCare runs free support groups: call 1-800-813-4673.';
   });
 
   render();
