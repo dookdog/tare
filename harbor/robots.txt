@@ -1,0 +1,5 @@
+# Search engines only read robots.txt at the root of a domain.
+# Move this file to the site root if Harbor gets its own domain.
+User-agent: *
+Allow: /
+Sitemap: https://dookdog.github.io/tare/harbor/sitemap.xml
